@@ -1,10 +1,10 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: %i[show update destroy]
+  before_action :set_user
 
   # GET /pets
   def index
-    @pets = Pet.all
-
+    @pets = Pet.where(user: @user)
     render json: @pets
   end
 
@@ -43,6 +43,10 @@ class PetsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -10,12 +10,12 @@ sizes = ["small", "medium", "large"]
   users << User.create( name: Faker::Name.name )
 end
 
-users.each do |user| 
+users.each do |user|
   2.times do
-    pet_rooms << user.pet_rooms.create( name: "My Room", 
-                                        type_of_pet: "dog", 
-                                        max_size_accepted: "small", 
-                                        rating: [rand(1..5), rand(1..5), rand(1..5), rand(1..5), rand(1..5)], 
+    pet_rooms << user.pet_rooms.create( name: "My Room",
+                                        type_of_pet: "dog",
+                                        max_size_accepted: "small",
+                                        rating: [rand(1..5), rand(1..5), rand(1..5), rand(1..5), rand(1..5)],
                                         price: 100,
                                         user_id: user.id
                                       )
@@ -47,13 +47,12 @@ users.each do |user|
 
 end
 
-pets.each do |pet|
-  3.times do
+users.each do |user|
     Reservation.create( start_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
                         end_date: Faker::Date.between(from: Date.today, to: 2.days.from_now),
-                        pet_id: pet.id,
-                        pet_room_id: pet_rooms.sample.id
+                        pet_id: user.pets.first.id,
+                        pet_room_id: pet_rooms.sample.id,
+                        user_id: user.id
                       )
-  end
 end
 
