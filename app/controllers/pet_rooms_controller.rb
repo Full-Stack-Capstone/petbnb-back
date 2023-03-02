@@ -5,7 +5,6 @@ class PetRoomsController < ApplicationController
   # GET /pet_rooms from user
   def index
     @pet_rooms = PetRoom.where(user: @user)
-
     render json: @pet_rooms
   end
 
