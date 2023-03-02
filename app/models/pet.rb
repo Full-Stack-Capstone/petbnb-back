@@ -6,5 +6,4 @@ class Pet < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :size, presence: true
   validates :allergies, presence: true
-
 end
