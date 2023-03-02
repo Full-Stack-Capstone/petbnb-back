@@ -8,7 +8,7 @@ class CreatePets < ActiveRecord::Migration[7.0]
       t.string :breed
       t.string :gender
       t.string :hair_length
-      t.string :alergies
+      t.string :allergies
       t.text :extra_information
       t.references :user, null: false, foreign_key: true
 

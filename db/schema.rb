@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200712) do
     t.string "breed"
     t.string "gender"
     t.string "hair_length"
-    t.string "alergies"
+    t.string "allergies"
     t.text "extra_information"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
