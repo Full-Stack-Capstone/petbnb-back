@@ -75,10 +75,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200712) do
     t.date "end_date"
     t.bigint "pet_id", null: false
     t.bigint "pet_room_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_reservations_on_pet_id"
     t.index ["pet_room_id"], name: "index_reservations_on_pet_room_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,4 +95,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200712) do
   add_foreign_key "pets", "users"
   add_foreign_key "reservations", "pet_rooms"
   add_foreign_key "reservations", "pets"
+  add_foreign_key "reservations", "users"
 end

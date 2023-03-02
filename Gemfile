@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # diego
-# ruby '3.1.3'
+ruby '3.1.3'
 # tiago
 # ruby '3.1.2'
 # Erick

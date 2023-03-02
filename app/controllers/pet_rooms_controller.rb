@@ -1,10 +1,16 @@
 class PetRoomsController < ApplicationController
   before_action :set_pet_room, only: %i[show update destroy]
+  before_action :set_user, only: %i[index show update destroy]
 
-  # GET /pet_rooms
+  # GET /pet_rooms from user
   def index
-    @pet_rooms = PetRoom.all
+    @pet_rooms = PetRoom.where(user: @user)
+    render json: @pet_rooms
+  end
 
+  # Get all rooms, no need login, homepage
+  def public
+    @pet_rooms = PetRoom.all
     render json: @pet_rooms
   end
 
@@ -43,6 +49,10 @@ class PetRoomsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_pet_room
     @pet_room = PetRoom.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.

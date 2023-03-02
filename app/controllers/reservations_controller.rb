@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show update destroy]
-
+  before_action :set_user
   # GET /reservations
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.where(user: @user)
 
     render json: @reservations
   end
@@ -43,6 +43,10 @@ class ReservationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
     @reservation = Reservation.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.
