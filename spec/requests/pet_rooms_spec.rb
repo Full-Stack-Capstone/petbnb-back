@@ -12,116 +12,116 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/pet_rooms", type: :request do
+RSpec.describe '/pet_rooms', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # PetRoom. As you add validations to PetRoom, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # PetRoomsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
+  let(:valid_headers) do
     {}
-  }
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       PetRoom.create! valid_attributes
       get pet_rooms_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       pet_room = PetRoom.create! valid_attributes
       get pet_room_url(pet_room), as: :json
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new PetRoom" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new PetRoom' do
+        expect do
           post pet_rooms_url,
                params: { pet_room: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(PetRoom, :count).by(1)
+        end.to change(PetRoom, :count).by(1)
       end
 
-      it "renders a JSON response with the new pet_room" do
+      it 'renders a JSON response with the new pet_room' do
         post pet_rooms_url,
              params: { pet_room: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new PetRoom" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new PetRoom' do
+        expect do
           post pet_rooms_url,
                params: { pet_room: invalid_attributes }, as: :json
-        }.to change(PetRoom, :count).by(0)
+        end.to change(PetRoom, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new pet_room" do
+      it 'renders a JSON response with errors for the new pet_room' do
         post pet_rooms_url,
              params: { pet_room: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested pet_room" do
+      it 'updates the requested pet_room' do
         pet_room = PetRoom.create! valid_attributes
         patch pet_room_url(pet_room),
               params: { pet_room: new_attributes }, headers: valid_headers, as: :json
         pet_room.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "renders a JSON response with the pet_room" do
+      it 'renders a JSON response with the pet_room' do
         pet_room = PetRoom.create! valid_attributes
         patch pet_room_url(pet_room),
               params: { pet_room: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the pet_room" do
+    context 'with invalid parameters' do
+      it 'renders a JSON response with errors for the pet_room' do
         pet_room = PetRoom.create! valid_attributes
         patch pet_room_url(pet_room),
               params: { pet_room: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
+        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested pet_room" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested pet_room' do
       pet_room = PetRoom.create! valid_attributes
-      expect {
+      expect do
         delete pet_room_url(pet_room), headers: valid_headers, as: :json
-      }.to change(PetRoom, :count).by(-1)
+      end.to change(PetRoom, :count).by(-1)
     end
   end
 end

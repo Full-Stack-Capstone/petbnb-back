@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :reservations
-  resources :pet_rooms
-  resources :pets
-  resources :users
+  resources :users do
+    resources :pet_rooms
+    resources :pets
+    resources :reservations
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "pet_rooms#index"
 end

@@ -1,5 +1,5 @@
 class PetRoomsController < ApplicationController
-  before_action :set_pet_room, only: %i[ show update destroy ]
+  before_action :set_pet_room, only: %i[show update destroy]
 
   # GET /pet_rooms
   def index
@@ -39,13 +39,14 @@ class PetRoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pet_room
-      @pet_room = PetRoom.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pet_room_params
-      params.require(:pet_room).permit(:name, :type_of_pet, :max_size_accepted, :rating, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pet_room
+    @pet_room = PetRoom.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pet_room_params
+    params.require(:pet_room).permit(:name, :type_of_pet, :max_size_accepted, :rating, :price)
+  end
 end

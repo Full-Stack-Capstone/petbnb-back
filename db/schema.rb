@@ -56,9 +56,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200712) do
 
   create_table "pets", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "pet_type"
     t.date "date_of_birth"
     t.string "size"
+    t.string "breed"
+    t.string "gender"
+    t.string "hair_length"
     t.string "alergies"
     t.text "extra_information"
     t.bigint "user_id", null: false
