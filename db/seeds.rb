@@ -6,6 +6,11 @@ pets = []
 
 sizes = ["small", "medium", "large"]
 
+User.create( name: 'Test',
+  email: 'test@mail.com',
+  password: 'user123',
+  jti: SecureRandom.uuid )
+
 5.times do
   users << User.create( name: Faker::Name.name,
                         email: Faker::Internet.email,
