@@ -1,6 +1,7 @@
 class PetRoomsController < ApplicationController
   before_action :set_pet_room, only: %i[show update destroy]
   before_action :set_user, only: %i[index show update destroy]
+  before_action :authenticate_user!, except: %i[public show]
 
   # GET /pet_rooms from user
   def index
