@@ -1,10 +1,11 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
+
   private
 
   def respond_with(resource, _opts = {})
     render json: {
-      status: {code: 200, message: 'Logged in sucessfully.'},
+      status: { code: 200, message: 'Logged in sucessfully.' },
       data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
     }, status: :ok
   end
@@ -13,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
     if current_user
       render json: {
         status: 200,
-        message: "logged out successfully"
+        message: 'logged out successfully'
       }, status: :ok
     else
       render json: {
