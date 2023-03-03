@@ -7,7 +7,9 @@ pets = []
 sizes = ["small", "medium", "large"]
 
 5.times do
-  users << User.create( name: Faker::Name.name )
+  users << User.create( name: Faker::Name.name,
+                        email: Faker::Internet.email,
+                        password: 'user123' )
 end
 
 users.each do |user|
