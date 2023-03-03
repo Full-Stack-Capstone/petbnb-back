@@ -9,7 +9,8 @@ sizes = ["small", "medium", "large"]
 5.times do
   users << User.create( name: Faker::Name.name,
                         email: Faker::Internet.email,
-                        password: 'user123' )
+                        password: 'user123',
+                        jti: SecureRandom.uuid )
 end
 
 users.each do |user|
