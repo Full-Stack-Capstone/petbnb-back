@@ -10,6 +10,17 @@ module PetbnbBack
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    
+    # Set Active Storage service to :disk
+    config.active_storage.service = :disk
+
+    # Set URL options for Active Storage
+    config.after_initialize do
+      ActiveStorage::Current.url_options = {
+        host: 'localhost:3001',
+        protocol: 'http'
+      }
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -22,6 +33,8 @@ module PetbnbBack
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    
+
     config.api_only = true
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies

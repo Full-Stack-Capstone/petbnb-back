@@ -110,6 +110,8 @@ GEM
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.7.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -233,6 +235,7 @@ DEPENDENCIES
   devise-jwt
   faker
   fast_jsonapi
+  jsonapi-serializer (~> 2.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
