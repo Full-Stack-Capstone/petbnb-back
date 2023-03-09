@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Rails.application.routes.url_helpers
   before_action :set_user, only: %i[show update destroy]
   before_action :authenticate_user!, only: %i[show update destroy]
 
@@ -10,6 +11,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user.image.attached? ? (image_url = rails_blob_path(@user.image, disposition: 'attachment', only_path: true)) : (image_url = nil)
+    # add image url to user object to be sent to frontend
+    @user = @user.attributes.merge(image_url:)
     render json: @user
   end
 
