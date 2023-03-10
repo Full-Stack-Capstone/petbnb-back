@@ -6,7 +6,8 @@ class PetsController < ApplicationController
   # GET /pets
   def index
     @pets = Pet.where(user: @user)
-    render json: @pets
+    # render json: PetSerializer.new(@pets).serializable_hash
+    render json: @pets, includes: %i[desc created_at], methods: %i[image_url]
   end
 
   # GET /pets/1
@@ -16,7 +17,7 @@ class PetsController < ApplicationController
 
   # POST /pets
   def create
-    @pet = Pet.new(pet_params)
+    @pet = @user.pets.new(pet_params)
 
     if @pet.save
       render json: @pet, status: :created, location: @pet
@@ -52,6 +53,7 @@ class PetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pet_params
-    params.require(:pet).permit(:name, :type, :date_of_birth, :size, :alergies, :extra_information, :user_id)
+    params.require(:pet).permit(:name, :pet_type, :date_of_birth, :size, :breed, :gender, :hair_length, :allergies, :extra_information,
+                                :user_id, :image)
   end
 end
