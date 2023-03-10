@@ -4,7 +4,7 @@ class CreatePetRooms < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :type_of_pet
       t.string :max_size_accepted
-      t.integer :rating, array: true, default: []
+      t.integer :rating, array: true, default: [0]
       t.float :price
       t.references :user, null: false, foreign_key: true
 

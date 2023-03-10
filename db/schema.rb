@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_172834) do
     t.string "name"
     t.string "type_of_pet"
     t.string "max_size_accepted"
-    t.integer "rating", default: [], array: true
+    t.integer "rating", default: [0], array: true
     t.float "price"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
