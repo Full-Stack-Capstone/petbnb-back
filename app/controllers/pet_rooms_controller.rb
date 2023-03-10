@@ -1,25 +1,25 @@
 class PetRoomsController < ApplicationController
   before_action :set_pet_room, only: %i[show update destroy]
   before_action :set_user, only: %i[index show update destroy create]
-  before_action :authenticate_user!, except: %i[public show index create]
+  before_action :authenticate_user!, except: %i[public show]
 
   # GET /pet_rooms from user
   def index
-    man = User.first
-    @pet_rooms = PetRoom.where(user: man)
+    @pet_rooms = PetRoom.where(user: @user)
     # render json: @pet_rooms
+
     render json: PetRoomSerializer.new(@pet_rooms).serializable_hash
   end
 
   # Get all rooms, no need login, homepage
   def public
     @pet_rooms = PetRoom.all
-    render json: @pet_rooms
+    render json: PetRoomSerializer.new(@pet_rooms).serializable_hash
   end
 
   # GET /pet_rooms/1
   def show
-    render json: @pet_room
+    render json: PetRoomSerializer.new(@pet_room).serializable_hash
   end
 
   # POST /pet_rooms
