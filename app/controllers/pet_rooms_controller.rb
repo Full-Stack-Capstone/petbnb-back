@@ -28,7 +28,6 @@ class PetRoomsController < ApplicationController
     @pet_room.user_id = @user.id
 
     if @pet_room.save
-      p 'maybe saved'
       render json: @pet_room, status: :created, location: @pet_room
     else
       render json: @pet_room.errors, status: :unprocessable_entity
