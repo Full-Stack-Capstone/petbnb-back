@@ -20,7 +20,7 @@ class PetsController < ApplicationController
     @pet = @user.pets.new(pet_params)
 
     if @pet.save
-      render json: @pet, status: :created, location: @pet
+      render json: @pet, includes: %i[desc created_at], methods: %i[image_url], status: :created, location: @pet
     else
       render json: @pet.errors, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   def update
     if @pet.update(pet_params)
-      render json: @pet
+      render json: @pet, includes: %i[desc created_at], methods: %i[image_url], status: :ok, location: @pet
     else
       render json: @pet.errors, status: :unprocessable_entity
     end
