@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API V1",
+    "version": "v1",
+    "description": "Rswag Pet Rooms Api"
+  },
+  "servers": [
+    {
+      "url": "http://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "localhost:3001"
+        }
+      }
+    }
+  ],
+  "securitySchemes": {
+    "bearer_auth": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Logs in a user",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "logged in succesfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "datetime"
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "list pet_rooms",
+        "tags": [
+          "Pet rooms"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "applicaton/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type_of_pet": {
+                      "type": "string"
+                    },
+                    "max_size_accepted": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "integer"
+                    },
+                    "price": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet_rooms": {
+      "post": {
+        "summary": "create a pet_room",
+        "tags": [
+          "Create a pet room"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pet_room": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "type_of_pet": {
+                        "type": "string"
+                      },
+                      "max_size_accepted": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pet_rooms/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show pet_room",
+        "tags": [
+          "Show single pet room"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type_of_pet": {
+                      "type": "string"
+                    },
+                    "max_size_accepted": {
+                      "type": "string"
+                    },
+                    "rating": {
+                      "type": "integer"
+                    },
+                    "price": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
