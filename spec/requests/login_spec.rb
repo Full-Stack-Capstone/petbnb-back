@@ -23,7 +23,7 @@ describe 'Login' do
         schema type: :object,
                properties: {
                  id: { type: :string },
-                 email: { type: :string},
+                 email: { type: :string },
                  created_at: { type: :string, format: :datetime }
                },
                required: ['token']
