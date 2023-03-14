@@ -2,90 +2,95 @@ require 'swagger_helper'
 
 RSpec.describe 'pet_rooms', type: :request do
   path '/' do
-    get('list pet rooms') do
-      produces 'application/json'
-      let!(:pet_room) { create(:pet_room) }
-
+    get('list pet_rooms') do
+      tags 'Pet rooms'
+      produces 'applicaton/json'
       response(200, 'successful') do
-        run_test! do |response|
-          response = JSON.parse(response.body)
-          expect(response.first['id']).to eq(pet_room.id)
-          expect(response.first['name']).to eq(pet_room.name)
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 type_of_pet: { type: :string },
+                 max_size_accepted: { type: :string },
+                 rating: { type: :integer },
+                 price: { type: :number }
+               }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
         end
+        run_test!
       end
     end
   end
 
-  # path '/pet_rooms/{id}' do
-  #   # You'll want to customize the parameter types...
-  #   parameter name: 'id', in: :path, type: :string, description: 'id'
+  path '/pet_rooms' do
+    post('create a pet_room') do
+      tags 'Create a pet room'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          pet_room: {
+            type: :object,
+            properties: {
+              name: { type: :string },
+              type_of_pet: { type: :string },
+              max_size_accepted: { type: :string },
+              price: { type: :number }
+            }
+          }
+        }
+      }
 
-  #   get('show pet_room') do
-  #     response(200, 'successful') do
-  #       let(:id) { '123' }
+      response(201, 'successful') do
+        let(:params) do
+          {
+            pet_room: {
+              name: 'Test Room',
+              type_of_pet: 'cat',
+              max_size_accepted: 'medium',
+              price: 50
+            }
+          }
+        end
+        run_test!
+      end
+    end
+  end
 
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
-  #   end
+  path '/pet_rooms/{id}' do
+    parameter name: 'id', in: :path, type: :string, description: 'id'
 
-  #   patch('update pet_room') do
-  #     response(200, 'successful') do
-  #       let(:id) { '123' }
+    get('show pet_room') do
+      tags 'Show single pet room'
+      produces 'application/json'
+      response(200, 'successful') do
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 type_of_pet: { type: :string },
+                 max_size_accepted: { type: :string },
+                 rating: { type: :integer },
+                 price: { type: :number }
+               }
+        let(:id) { '1' }
 
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
-  #   end
-
-  #   put('update pet_room') do
-  #     response(200, 'successful') do
-  #       let(:id) { '123' }
-
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
-  #   end
-
-  #   delete('delete pet_room') do
-  #     response(200, 'successful') do
-  #       let(:id) { '123' }
-
-  #       after do |example|
-  #         example.metadata[:response][:content] = {
-  #           'application/json' => {
-  #             example: JSON.parse(response.body, symbolize_names: true)
-  #           }
-  #         }
-  #       end
-  #       run_test!
-  #     end
-  #   end
-  # end
-
-  # path '/' do
-  #   get('public pet_room') do
-  #     response(200, 'successful') do
-  #       run_test!
-  #     end
-  #   end
-  # end
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+    end
+  end
 end

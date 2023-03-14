@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.configure do |config|
-
   # There is a bug in RSwag where the response schema is being outputted
   # incorrectly, causing it to be inaccessible in the UI and invalid
   # in the YML artifact. This workaround ensures that both the response schema and
@@ -31,7 +30,7 @@ RSpec.configure do |config|
     { example: JSON.parse(response.body, symbolize_names: true) }
   end
 
-  config.swagger_root = Rails.root.to_s + '/swagger'
+  config.swagger_root = "#{Rails.root}/swagger"
 
   config.swagger_docs = {
     'v1/swagger.yaml' => {
@@ -39,7 +38,7 @@ RSpec.configure do |config|
       info: {
         title: 'API V1',
         version: 'v1',
-        description: 'Rswag Blog API'
+        description: 'Rswag Pet Rooms Api'
       },
       servers: [
         {
@@ -50,7 +49,13 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      securitySchemes: {
+        bearer_auth: {
+          type: :http,
+          scheme: :bearer
+        }
+      }
     }
   }
 end
