@@ -89,39 +89,16 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### Prerequisites
 
 In order to run this project you need:
 
-- `npm install`
-
+- `Ruby and Rails` installed in your machine.
+- You need to create a new master.key:
+  ```
+  1. Remove config/master.key and config/credentials. yml.enc
+  2. Run in the terminal: EDITOR=code rails   credentials:edit 
+  3. This command will create a new master.key and  credentials.yml.enc if they do not exist.
 ### Setup
 
 Clone this repository to your desired folder:
@@ -130,7 +107,7 @@ Example commands:
 
 ```sh
   cd my-folder
-  git git@github.com:Full-Stack-Capstone/petbnb-front.git
+  git https://github.com/Full-Stack-Capstone/petbnb-back.git
 ```
 
 ### Install
@@ -140,6 +117,9 @@ Install this project with:
 ```sh
   cd my-project
   bundle install
+  rails db:create
+  rails db:migrate
+  rails db:seed
 ```
 
 ### Usage
@@ -147,7 +127,7 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  npm start
+  rails server
 ```
 
 ### Run tests
@@ -155,7 +135,9 @@ To run the project, execute the following command:
 To run tests, run the following command:
 
 ```sh
-  npm test
+  rspec ./spec/routing
+  rspec ./spec/models
+  rspec ./spec/integration
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
