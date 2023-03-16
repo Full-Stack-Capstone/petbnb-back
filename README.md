@@ -211,5 +211,5 @@ This project is [MIT](./LICENSE) licensed.
 
 <h2>ERD Diagram</h2>
 <div style="max-width: 50%; margin: 0 auto">
-<img src="./src/images/erddiagram.jpeg">
+<img src="./public/erddiagram.jpeg">
 </div>
