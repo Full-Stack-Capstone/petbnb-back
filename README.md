@@ -15,7 +15,6 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
-  - [Kanban Board](#kanba)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -84,7 +83,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- Coming soon...
+- Api documentation in this [link](https://petbnb.onrender.com/api-docs/index.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
